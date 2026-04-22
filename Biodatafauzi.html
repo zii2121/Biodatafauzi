@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zii Portfolio - Dark Fantasy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Creepster&family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Portfolio Fauzi - Mahasiswa Programmer SMKN 1 Sragi">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0d1a 50%, #0d1b2a 100%);
+            color: #e0d7c5;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #ff6b35, transparent);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid #8b4513;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Creepster', cursive;
+            font-size: 2.5rem;
+            color: #d4af37;
+            text-shadow: 0 0 20px #d4af37;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #e0d7c5;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #d4af37;
+            text-shadow: 0 0 10px #d4af37;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, #ff6b35);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: #d4af37;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'MedievalSharp', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            background: linear-gradient(45deg, #d4af37, #ff6b35, #e0d7c5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px #d4af37); }
+            to { filter: drop-shadow(0 0 30px #ff6b35); }
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, #8b4513, #d4af37);
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #d4af37, #ff6b35);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #ff6b35);
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border: 3px solid #8b4513;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(26, 13, 26, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #8b4513;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            background: rgba(26, 13, 26, 0.8);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.3);
+        }
+
+        .skill-item h4 {
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid #8b4513;
+            transition: all 0.4s ease;
+            background: rgba(26, 13, 26, 0.8);
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 30px 60px rgba(139, 69, 19, 0.5);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            color: #d4af37;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(26, 13, 26, 0.5);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #ff6b35;
+            margin-right: 1rem;
+            width: 40px;
+        }
+
+        .contact-form {
+            background: rgba(26, 13, 26, 0.5);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid #8b4513;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #8b4513;
+            border-radius: 10px;
+            color: #e0d7c5;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 2px solid #8b4513;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 300px;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding-top: 80px;
+                transition: right 0.3s ease;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .about-grid, .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Zii.id</div>
+            <i class="fas fa-bars hamburger" id="hamburger"></i>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content reveal">
+            <h1>Selamat Datang di Portofolio Saya</h1>
+            <p>Saya Fauzi, mahasiswa SMKN 1 Sragi yang bercita-cita menjadi programmer. Ingin belajar dan menciptakan karya digital terbaik.</p>
+            <a href="#portfolio" class="cta-button">Lihat Karya Saya</a>
+        </div>
+    </section>
+
+    <section id="about" class="reveal">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="zii12.jpeg" alt="Fauzi Profile">
+            </div>
+            <div class="about-text">
+                <h3>Siapakah Fauzi?</h3>
+                <p>Fauzi adalah seorang mahasiswa SMKN 1 Sragi yang ingin menciptakan aplikasi web dan mobile tangguh seperti benteng kerajaan.Yang ingin menguasai HTML, CSS, JavaScript, React, dan tools modern lainnya.</p>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4><i class="fab fa-html5"></i> HTML/CSS</h4>
+                        <div class="skill-bar" style="background: linear-gradient(90deg, #d4af37, #ff6b35); height: 8px; width: 90%; border-radius: 4px;"></div>
+                    </div>
+                    <div class="skill-item">
+                        <h4><i class="fab fa-js-square"></i> JavaScript</h4>
+                        <div class="skill-bar" style="background: linear-gradient(90deg, #d4af37, #ff6b35); height: 8px; width: 85%; border-radius: 4px;"></div>
+                    </div>
+                    <div class="skill-item">
+                        <h4><i class="fab fa-react"></i> React</h4>
+                        <div class="skill-bar" style="background: linear-gradient(90deg, #d4af37, #ff6b35); height: 8px; width: 80%; border-radius: 4px;"></div>
+                    </div>
+                    <div class="skill-item">
+                        <h4><i class="fab fa-node-js"></i> Node.js</h4>
+                        <div class="skill-bar" style="background: linear-gradient(90deg, #d4af37, #ff6b35); height: 8px; width: 75%; border-radius: 4px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="reveal">
+        <h2 class="section-title">Hasil Karya</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop" alt="E-Commerce">
+                <div class="portfolio-overlay">
+                    <h3>E-Commerce</h3>
+                    <p>Platform belanja online lengkap dengan payment gateway</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=300&fit=crop" alt="Dashboard">
+                <div class="portfolio-overlay">
+                    <h3>Admin Dashboard</h3>
+                    <p>Dashboard modern dengan chart interaktif</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Portfolio">
+                <div class="portfolio-overlay">
+                    <h3>Portfolio Site</h3>
+                    <p>Dark fantasy portfolio dengan animasi canggih</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop" alt="Landing">
+                <div class="portfolio-overlay">
+                    <h3>Landing Page</h3>
+                    <p>Landing page konversi tinggi untuk startup</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <h2 class="section-title">Hubungi Saya</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3><i class="fas fa-user"></i> Info Kontak</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>fauzisyahid001@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+62 857 6813 3984</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Sragi, Lampung Selatan</span>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Anda" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Subjek">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Pesan Anda" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fauzi | SMKN 1 Sragi | Made with <i class="fas fa-heart" style="color: #ff6b35;"></i></p>
+    </footer>
+
+    <script>
+        // Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.width = particle.style.height = (Math.random() * 5 + 2) + 'px';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Form
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih! Pesan telah dikirim.');
+            e.target.reset();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
